@@ -16,50 +16,124 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QMainWindow, QMenu, QMenuBar,
-    QPushButton, QSizePolicy, QStatusBar, QTextEdit,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QFormLayout, QGridLayout, QLabel,
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QTabWidget, QWidget)
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
-            MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QWidget(MainWindow)
+class Ui_rootWindow(object):
+    def setupUi(self, rootWindow):
+        if not rootWindow.objectName():
+            rootWindow.setObjectName(u"rootWindow")
+        rootWindow.resize(1000, 768)
+        rootWindow.setMinimumSize(QSize(800, 768))
+        rootWindow.setMaximumSize(QSize(1600, 900))
+        rootWindow.setDocumentMode(False)
+        rootWindow.setTabShape(QTabWidget.Rounded)
+        rootWindow.setUnifiedTitleAndToolBarOnMac(False)
+        self.actionClose = QAction(rootWindow)
+        self.actionClose.setObjectName(u"actionClose")
+        self.centralwidget = QWidget(rootWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.gridLayout = QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName(u"gridLayout")
         self.btnPress = QPushButton(self.centralwidget)
         self.btnPress.setObjectName(u"btnPress")
-        self.btnPress.setGeometry(QRect(260, 30, 271, 51))
-        self.txtbOuput = QTextEdit(self.centralwidget)
-        self.txtbOuput.setObjectName(u"txtbOuput")
-        self.txtbOuput.setGeometry(QRect(10, 130, 771, 261))
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
+
+        self.gridLayout.addWidget(self.btnPress, 5, 0, 1, 1)
+
+        self.formLayout = QFormLayout()
+        self.formLayout.setObjectName(u"formLayout")
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_3)
+
+        self.lineEdit_3 = QLineEdit(self.centralwidget)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.lineEdit_3)
+
+
+        self.gridLayout.addLayout(self.formLayout, 2, 0, 1, 1)
+
+        self.formLayout_2 = QFormLayout()
+        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+
+        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label_2)
+
+        self.lineEdit_2 = QLineEdit(self.centralwidget)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+
+        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.lineEdit_2)
+
+
+        self.gridLayout.addLayout(self.formLayout_2, 1, 0, 1, 1)
+
+        self.formLayout_4 = QFormLayout()
+        self.formLayout_4.setObjectName(u"formLayout_4")
+        self.label_4 = QLabel(self.centralwidget)
+        self.label_4.setObjectName(u"label_4")
+
+        self.formLayout_4.setWidget(0, QFormLayout.LabelRole, self.label_4)
+
+        self.lineEdit_4 = QLineEdit(self.centralwidget)
+        self.lineEdit_4.setObjectName(u"lineEdit_4")
+
+        self.formLayout_4.setWidget(0, QFormLayout.FieldRole, self.lineEdit_4)
+
+
+        self.gridLayout.addLayout(self.formLayout_4, 3, 0, 1, 1)
+
+        self.formLayout_3 = QFormLayout()
+        self.formLayout_3.setObjectName(u"formLayout_3")
+        self.label = QLabel(self.centralwidget)
+        self.label.setObjectName(u"label")
+
+        self.formLayout_3.setWidget(0, QFormLayout.LabelRole, self.label)
+
+        self.lne_name = QLineEdit(self.centralwidget)
+        self.lne_name.setObjectName(u"lne_name")
+
+        self.formLayout_3.setWidget(0, QFormLayout.FieldRole, self.lne_name)
+
+
+        self.gridLayout.addLayout(self.formLayout_3, 0, 0, 1, 1)
+
+        self.listWidget = QListWidget(self.centralwidget)
+        self.listWidget.setObjectName(u"listWidget")
+
+        self.gridLayout.addWidget(self.listWidget, 4, 0, 1, 1)
+
+        rootWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QMenuBar(rootWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 22))
+        self.menubar.setGeometry(QRect(0, 0, 1000, 21))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
-        MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QStatusBar(MainWindow)
+        rootWindow.setMenuBar(self.menubar)
+        self.statusbar = QStatusBar(rootWindow)
         self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        rootWindow.setStatusBar(self.statusbar)
 
         self.menubar.addAction(self.menuFile.menuAction())
+        self.menuFile.addAction(self.actionClose)
 
-        self.retranslateUi(MainWindow)
+        self.retranslateUi(rootWindow)
 
-        QMetaObject.connectSlotsByName(MainWindow)
+        QMetaObject.connectSlotsByName(rootWindow)
     # setupUi
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.btnPress.setText(QCoreApplication.translate("MainWindow", u"Press ME", None))
-        self.txtbOuput.setMarkdown("")
-        self.txtbOuput.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.menuFile.setTitle(QCoreApplication.translate("MainWindow", u"File", None))
+    def retranslateUi(self, rootWindow):
+        rootWindow.setWindowTitle(QCoreApplication.translate("rootWindow", u"MainWindow", None))
+        self.actionClose.setText(QCoreApplication.translate("rootWindow", u"Close", None))
+        self.btnPress.setText(QCoreApplication.translate("rootWindow", u"Add Information", None))
+        self.label_3.setText(QCoreApplication.translate("rootWindow", u"Address:", None))
+        self.label_2.setText(QCoreApplication.translate("rootWindow", u"Age:", None))
+        self.label_4.setText(QCoreApplication.translate("rootWindow", u"Gender:", None))
+        self.label.setText(QCoreApplication.translate("rootWindow", u"Name:", None))
+        self.menuFile.setTitle(QCoreApplication.translate("rootWindow", u"File", None))
     # retranslateUi
 
