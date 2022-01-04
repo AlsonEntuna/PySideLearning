@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QFileDialog
 from ui.ui_mainwindow import Ui_rootWindow
 from PySide6.QtCore import *
 from PySide6.QtGui import *
@@ -18,5 +18,10 @@ class MainWindow(QMainWindow):
 
     def _onPress(self) -> None:
         self.ui.listWidget.clear()
+        photo, ext = QFileDialog.getOpenFileName(self, "Open")
+        if photo:
+            print(photo)
+            print(ext)
+
         self.ui.listWidget.addItems(["Alson", "Entuna"])
         QMessageBox.about(self, "Information", "Added Information...")
