@@ -1,7 +1,6 @@
-from PySide6.QtWidgets import QMainWindow, QMessageBox, QFileDialog
+import sys
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QFileDialog, QApplication
 from ui.ui_mainwindow import Ui_rootWindow
-from PySide6.QtCore import *
-from PySide6.QtGui import *
 
 
 class MainWindow(QMainWindow):
@@ -25,3 +24,13 @@ class MainWindow(QMainWindow):
 
         self.ui.listWidget.addItems(["Alson", "Entuna"])
         QMessageBox.about(self, "Information", "Added Information...")
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
+    mainWindow = MainWindow()
+    mainWindow.setWindowTitle("Testing UI - Visualization")
+    mainWindow.show()
+
+    sys.exit(app.exec())

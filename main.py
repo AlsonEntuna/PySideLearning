@@ -1,5 +1,5 @@
 import sys
-sys.path.insert(0, "../ui")
+sys.path.insert(0, "ui")
 print(sys.path)
 
 from PySide6.QtWidgets import QApplication
